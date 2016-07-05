@@ -1,0 +1,11 @@
+Basic CRUD, display list in the table, display individual object detail page
+* Consume/Produce application/json type
+
+1. /rest/students (GET) - Return a list of all students
+2. /rest/students/{id} (GET) - Return student based on the id
+3. /rest/students/search/{query} (GET) - Return all students matching the query
+4. /rest/students/{id} (DELETE) - Delete the student based on the id
+5. /rest/students/{id} (PUT) - Update the student based on the id
+6. /rest/students/add (POST) - Insert the students based on the contents of the form
+
+

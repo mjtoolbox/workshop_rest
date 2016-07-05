@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mjtoolbox</groupId>
+    <artifactId>workshop_rest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+     <properties>
+        <domain_name>workshop_rest</domain_name>
+    </properties>
+
+    <dependencies>
+        <!-- resteasy servlet initializer is needed for Tomcat deployment -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-servlet-initializer</artifactId>
+            <version>3.0.17.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>3.0.17.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>3.0.17.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+            <version>3.0.17.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+    </dependencies>
+
+
+   <build>
+        <!-- final name will overwrite WAR file name-->
+        <finalName>${build.warname}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <pluginManagement>
+            <!-- To define the plugin version in your parent POM -->
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <fork>true</fork>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.5.Final</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugin</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
+                    <!-- encoding>UTF-8</encoding -->
+                </configuration>
+            </plugin>
+
+
+            <!-- To use the plugin goals in your POM or parent POM -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>tomcat7</server>
+                    <path>/${domain_name}</path>
+                    <username>admin</username>
+                    <password>admin</password>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+ <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.warname>workshop_rest</build.warname>
+                <restService.url>http://localhost:8080/${domain_name}/rest</restService.url>
+                <message.text>This is from local environment.</message.text>
+            </properties>
+        </profile>
+        <profile>
+            <id>ua</id>
+            <properties>
+                <build.warname>${project.artifactId}-${project.version}-UA</build.warname>
+                <restService.url>uat url here</restService.url>
+                <message.text>This is from uat environment.</message.text>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <build.warname>${project.artifactId}-${project.version}-PROD</build.warname>
+                <restService.url>production url here</restService.url>
+                <message.text>This is from prod environment.</message.text>
+            </properties>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>Tomcat repository</id>
+            <url>http://repo2.maven.org/maven2/org/apache/tomcat/</url>
+        </repository>
+    </repositories>
+
+
+</project>
