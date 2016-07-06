@@ -95,7 +95,7 @@ public class SimpleStudentService {
 
     @POST
     @Path("add")
-    @Consumes("application/json")
+    @Consumes("multipart/form-data")
     @ApiOperation(value = "Add Student", notes = "Adding a new student, id will be generated.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
@@ -140,13 +140,16 @@ public class SimpleStudentService {
     }
 
     private Student updateStudent(Student aStudent) {
-        for (Student student : students) {
-            if (student.getId() == aStudent.getId()) {
-                student.setName(aStudent.getName());
-                student.setAge(aStudent.getAge());
-            }
-        }
-        return aStudent;
+
+        Student newStudent = new Student();
+        newStudent.setId(aStudent.getId());
+        newStudent.setName(aStudent.getName());
+        newStudent.setAge(aStudent.getAge());
+
+        removeStudentById(aStudent.getId());
+        students.add(newStudent);
+
+        return newStudent;
     }
 
     private int generateNextId() {

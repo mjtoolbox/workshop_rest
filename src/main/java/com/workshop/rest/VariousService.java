@@ -13,9 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-@Path("/restservice")
-@Api(value="/restservice", description = "Rest Service!")
-public class RestService {
+@Path("/variousservice")
+@Api(value="/variousservice", description = "Rest Service!")
+public class VariousService {
 
     @GET
     @Path("/{username}")
