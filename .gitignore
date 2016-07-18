@@ -1,0 +1,10 @@
+.idea/
+*.iml
+target/
+non-dist
+.settings/
+.metadata/
+.project
+.classpath
+*.log.*
+*.log

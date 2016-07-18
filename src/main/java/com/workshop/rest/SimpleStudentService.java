@@ -17,6 +17,8 @@ import java.util.ListIterator;
 @Api(value = "/students", description = "Student service for simple object return in json type.")
 public class SimpleStudentService {
 
+    // To make the list dynamic based on add, update, delete, make students list static
+//    static List<Student> students = new ArrayList<Student>();
     List<Student> students = new ArrayList<Student>();
 
     public SimpleStudentService() {
@@ -71,9 +73,11 @@ public class SimpleStudentService {
 
     @DELETE
     @Path("{id}")
+    @Consumes("application/x-www-form-urlencoded")
     @ApiOperation(value = "Remove Student", notes = "Remove a new student by id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 204, message = "Resource deleted successfully"),
             @ApiResponse(code = 500, message = "Something wrong in the server")
     })
     public void remove(@ApiParam(value = "id", required = true) @PathParam("id") int anId) {
@@ -95,7 +99,7 @@ public class SimpleStudentService {
 
     @POST
     @Path("add")
-    @Consumes("multipart/form-data")
+    @Consumes("application/x-www-form-urlencoded")
     @ApiOperation(value = "Add Student", notes = "Adding a new student, id will be generated.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
