@@ -9,3 +9,5 @@ Basic CRUD, display list in the table, display individual object detail page
 6. /rest/students/add (POST) - Insert the students based on the contents of the form
 
 
+Swagger: http://localhost:8080/workshop_rest/rest/swagger.json
+http://localhost:8080/swagger/index.html#/

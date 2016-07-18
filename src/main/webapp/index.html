@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students home page</title>
+
+    <script type="text/javascript" src="resources/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="resources/bootstrap/js/bootstrap.js"></script>
+    <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+    <script type="text/javascript">
+
+        $.ajax({
+                    type: "GET",
+                    url: 'http://localhost:8080/workshop_rest/rest/students',
+                    dataType: 'json'
+                })
+                .done(function (data) {
+                    /*
+                     [{"id":1001,"name":"Mike","age":17},{"id":1002,"name":"Jane","age":19},
+                     {"id":1003,"name":"Bob","age":19},{"id":1004,"name":"Susan","age":22},
+                     {"id":1005,"name":"Daniel","age":25},{"id":1006,"name":"John","age":26},
+                     {"id":1007,"name":"Debbie","age":28}]
+                     */
+                    console.log(data.length);
+
+                    updateTable(data);
+
+                }); // end of done
+
+        function updateTable( tableData )
+        {
+            // Refresh table
+            $("#studentTableBody").empty();
+
+            var table = document.getElementById("student_list_ajax");
+            var rowIdx = 1;
+            // Loop through markers array and parse JSON to
+            for (var i = 0; i < tableData.length; i++) {
+                var row = table.insertRow(rowIdx++);
+                row.insertCell(0).innerHTML = tableData[i].id;
+                row.insertCell(1).innerHTML = tableData[i].name;
+                row.insertCell(2).innerHTML = tableData[i].age;
+            } // end for
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <h1>Welcome!</h1>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <h1>Students</h1>
+
+        <table class="table table-hover" id="student_list_ajax">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Age</td>
+            </tr>
+            </thead>
+            <tbody id="studentTableBody">
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
