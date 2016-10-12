@@ -23,13 +23,37 @@ public class SimpleStudentService {
 
     public SimpleStudentService() {
         // Populate test data. Later each WS method will retrieve data from DB.
-        students.add(new Student(1001, "Mike", 17));
-        students.add(new Student(1002, "Jane", 19));
-        students.add(new Student(1003, "Bob", 19));
-        students.add(new Student(1004, "Susan", 22));
-        students.add(new Student(1005, "Daniel", 25));
-        students.add(new Student(1006, "John", 26));
-        students.add(new Student(1007, "Debbie", 28));
+        students.add(new Student(1001, "Mike", 17, "M", "BC"));
+        students.add(new Student(1002, "Jane", 19, "F", "SK"));
+        students.add(new Student(1003, "Bob", 19, "M", "AB"));
+        students.add(new Student(1004, "Susan", 22, "F", "ON"));
+        students.add(new Student(1005, "Daniel", 25, "M", "BC"));
+        students.add(new Student(1006, "John", 26, "M", "AB"));
+        students.add(new Student(1007, "Debbie", 28, "F", "BC"));
+
+        students.add(new Student(1008, "Mike1", 41, "M", "QC"));
+        students.add(new Student(1009, "Jane1", 34, "F", "PE"));
+        students.add(new Student(1010, "Bob1", 22, "M", "BC"));
+        students.add(new Student(1011, "Susan1", 34, "F", "SK"));
+        students.add(new Student(1012, "Daniel1", 23, "M", "MB"));
+        students.add(new Student(1013, "John1", 42, "M", "ON"));
+        students.add(new Student(1014, "Debbie1", 19, "F", "BC"));
+
+        students.add(new Student(1015, "Mike2", 26, "M", "QC"));
+        students.add(new Student(1016, "Jane2", 44, "F", "BC"));
+        students.add(new Student(1017, "Bob2", 21, "M", "NS"));
+        students.add(new Student(1018, "Susan2", 33, "F", "BC"));
+        students.add(new Student(1019, "Daniel2", 28, "M", "ON"));
+        students.add(new Student(1020, "John2", 36, "M", "BC"));
+        students.add(new Student(1021, "Debbie2", 34, "F", "NL"));
+
+        students.add(new Student(1022, "Mike3", 26, "M", "NB"));
+        students.add(new Student(1023, "Jane3", 40, "F", "QC"));
+        students.add(new Student(1024, "Bob3", 30, "M", "BC"));
+        students.add(new Student(1025, "Susan3", 25, "F", "ON"));
+        students.add(new Student(1026, "Daniel3", 23, "M", "SK"));
+        students.add(new Student(1027, "John3", 22, "M", "AB"));
+        students.add(new Student(1028, "Debbie3", 45, "F", "AB"));
     }
 
 

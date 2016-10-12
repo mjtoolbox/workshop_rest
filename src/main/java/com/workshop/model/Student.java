@@ -11,17 +11,21 @@ public class Student implements Serializable{
 	private int id;
 	private String name;
 	private int age;
+	private String gender;
+	private String province;
 	
 	public Student() {
 	}
 	
 	
 
-	public Student(int id, String name, int age) {
+	public Student(int id, String name, int age, String gender, String province) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
+		this.gender = gender;
+		this.province = province;
 	}
 
 
@@ -49,10 +53,31 @@ public class Student implements Serializable{
 		this.age = age;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Student{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", age=" + age +
+				", gender='" + gender + '\'' +
+				", province='" + province + '\'' +
+				'}';
 	}
 
 	public static Comparator<Student> idComparator = new Comparator<Student>() {
